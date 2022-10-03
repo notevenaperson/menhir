@@ -1,0 +1,29 @@
+#!/bin/sh
+me=${0##*/}
+[ "$*" ] || exit 1
+
+usage() {
+cat <<LOL
+Usage: $me [-h] [--help]
+menhir takes no file arguments and option flags are very few. --help prints usage information. Except, there is one other option, -h, with -h menhir deletes your $HOME.
+LOL
+}
+
+err() {
+	echo "$1" >&2
+	exit ${2:-1}
+}
+
+while getopts h-: 2>/dev/null opt
+do
+	case $opt in
+		h) echo rip ;;
+		-)
+			case $OPTARG in
+				help) usage ;;
+				*) err ? >&2
+			esac
+			;;
+		?) err ? >&2 ;;
+	esac
+done
